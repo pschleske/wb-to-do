@@ -1,3 +1,12 @@
+function completeTodo(event) {
+    const value = event.target.getAttribute("aria-checked");
+    if (value !== "true") {
+        event.target.setAttribute("aria-checked", "true");
+    } else {
+        event.target.setAttribute("aria-checked", "false");
+    }
+}
+
 function addTodo(event) {
     event.preventDefault();
     const item = document.createElement("li");
@@ -10,21 +19,16 @@ function addTodo(event) {
     item.append(button);
 
     const list = document.querySelector("ul");
+    console.log(item)
     list.appendChild(item);
 }
 
 
 function removeTodo(event) {
+    event.stopPropagation()
     event.target.parentNode.remove();
 }
 
-function completeTodo(event) {
-    const value = event.target.getAttribute(aria - checked);
-    if (value !== "true") {
-        event.target.setAttribute("aria-checked", "true");
-    } else {
-        event.target.setAttribute("aria-checked", "false");
-    }
-}
+
 
 document.querySelector("form").addEventListener("submit", addTodo);
